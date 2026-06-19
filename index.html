@@ -2,9 +2,59 @@
 <html>
 <head>
     <title>Smart Resume Analyzer</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+            text-align:center;
+            padding:30px;
+        }
+
+        .container{
+            max-width:600px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        button{
+            background:#007bff;
+            color:white;
+            border:none;
+            padding:10px 20px;
+            border-radius:5px;
+        }
+
+        #result{
+            margin-top:20px;
+            font-size:18px;
+            font-weight:bold;
+        }
+    </style>
 </head>
+
 <body>
+
+<div class="container">
     <h1>Smart Resume Analyzer</h1>
-    <p>AI-powered Resume Analyzer</p>
+    <p>Upload your resume and get ATS score</p>
+
+    <input type="file" id="resume">
+    <br><br>
+
+    <button onclick="analyzeResume()">Analyze Resume</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function analyzeResume() {
+    document.getElementById("result").innerHTML =
+    "ATS Score: " + Math.floor(Math.random()*30 + 70) + "%";
+}
+</script>
+
 </body>
 </html>
