@@ -1,57 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Smart Resume Analyzer</title>
+<title>ATS Resume Analyzer Pro</title>
+
 <style>
 body{
-font-family:Arial,sans-serif;
-background:#f4f4f4;
-text-align:center;
-padding:30px;
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    text-align:center;
+    padding:30px;
 }
 
 .container{
-max-width:600px;
-margin:auto;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+    max-width:600px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 button{
-background:#007bff;
-color:white;
-border:none;
-padding:10px 20px;
-border-radius:5px;
-cursor:pointer;
+    background:#007bff;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    cursor:pointer;
 }
 
 #result{
-margin-top:20px;
-font-size:18px;
-font-weight:bold;
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
 }
 </style>
+
 </head>
 
 <body>
+
 <div class="container">
-<h1>Smart Resume Analyzer</h1>
-<p>Upload your resume and get ATS score</p>
+
+<h1>ATS Resume Analyzer Pro</h1>
+
+<p>Upload Resume (.txt file)</p>
 
 <input type="file" id="resume">
+
 <br><br>
 
-<button onclick="analyzeResume()">Analyze Resume</button>
+<button onclick="analyzeResume()">
+Analyze Resume
+</button>
 
 <div id="result"></div>
+
 </div>
 
 <script>
-function analyzeResume() {
-let file = document.getElementById("resume").files[0];
+
+function analyzeResume(){
+
+let file =
+document.getElementById("resume").files[0];
 
 if(!file){
 document.getElementById("result").innerHTML =
@@ -59,12 +71,46 @@ document.getElementById("result").innerHTML =
 return;
 }
 
-let score = Math.floor(Math.random()*20)+80;
+const reader = new FileReader();
+
+reader.onload = function(e){
+
+let text = e.target.result.toLowerCase();
+
+let skills = [
+"java",
+"python",
+"sql",
+"html",
+"css",
+"javascript",
+"react",
+"spring",
+"ai",
+"machine learning"
+];
+
+let found = [];
+
+skills.forEach(skill=>{
+if(text.includes(skill)){
+found.push(skill);
+}
+});
+
+let score =
+Math.floor((found.length/skills.length)*100);
 
 document.getElementById("result").innerHTML =
 "ATS Score: " + score + "%<br><br>" +
-"Skills Found: Java, HTML, CSS, JavaScript";
+"Skills Found:<br>" +
+found.join(", ");
+};
+
+reader.readAsText(file);
+
 }
+
 </script>
 
 </body>
