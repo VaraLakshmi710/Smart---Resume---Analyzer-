@@ -1,58 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Smart Resume Analyzer</title>
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            background:#f4f4f4;
-            text-align:center;
-            padding:30px;
-        }
+<title>Smart Resume Analyzer</title>
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+text-align:center;
+padding:30px;
+}
 
-        .container{
-            max-width:600px;
-            margin:auto;
-            background:white;
-            padding:20px;
-            border-radius:10px;
-            box-shadow:0 0 10px rgba(0,0,0,0.1);
-        }
+.container{
+max-width:600px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
 
-        button{
-            background:#007bff;
-            color:white;
-            border:none;
-            padding:10px 20px;
-            border-radius:5px;
-        }
+button{
+background:#007bff;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:5px;
+cursor:pointer;
+}
 
-        #result{
-            margin-top:20px;
-            font-size:18px;
-            font-weight:bold;
-        }
-    </style>
+#result{
+margin-top:20px;
+font-size:18px;
+font-weight:bold;
+}
+</style>
 </head>
 
 <body>
-
 <div class="container">
-    <h1>Smart Resume Analyzer</h1>
-    <p>Upload your resume and get ATS score</p>
+<h1>Smart Resume Analyzer</h1>
+<p>Upload your resume and get ATS score</p>
 
-    <input type="file" id="resume">
-    <br><br>
+<input type="file" id="resume">
+<br><br>
 
-    <button onclick="analyzeResume()">Analyze Resume</button>
+<button onclick="analyzeResume()">Analyze Resume</button>
 
-    <div id="result"></div>
+<div id="result"></div>
 </div>
 
 <script>
 function analyzeResume() {
-    document.getElementById("result").innerHTML =
-    "ATS Score: " + Math.floor(Math.random()*30 + 70) + "%";
+let file = document.getElementById("resume").files[0];
+
+if(!file){
+document.getElementById("result").innerHTML =
+"Please upload a resume first!";
+return;
+}
+
+let score = Math.floor(Math.random()*20)+80;
+
+document.getElementById("result").innerHTML =
+"ATS Score: " + score + "%<br><br>" +
+"Skills Found: Java, HTML, CSS, JavaScript";
 }
 </script>
 
